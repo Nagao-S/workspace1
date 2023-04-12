@@ -30,6 +30,9 @@ class VendingMachine
     elsif item.is_a?(Beverage) && @deposit >= item.price
       @deposit -= item.price
       item.name
+    elsif item.is_a?(Snack) && @deposit >= item.price
+      @deposit -= item.price
+      item.name
     else
       ''
     end
@@ -40,8 +43,6 @@ class VendingMachine
   def press_manufacturer_name
     @manufacturer_name
   end
-
-
 
 end
 
@@ -76,9 +77,17 @@ class CupCoffee < Item
   end
 end
 
+#アイテムクラスを継承したスナッククラス
+class Snack < Item
+  def initialize
+    super("potato chips", 150)
+  end
+end
+
 #サンプルコード
 hot_cup_coffee = CupCoffee.new('hot');
 cider = Beverage.new('cider')
+snack = Snack.new
 vending_machine = VendingMachine.new('サントリー')
 vending_machine.deposit_coin(100)
 vending_machine.deposit_coin(100)
@@ -87,3 +96,8 @@ puts vending_machine.press_button(cider)
 puts vending_machine.press_button(hot_cup_coffee)
 vending_machine.add_cup(1)
 puts vending_machine.press_button(hot_cup_coffee)
+
+puts vending_machine.press_button(snack)
+vending_machine.deposit_coin(100)
+vending_machine.deposit_coin(100)
+puts vending_machine.press_button(snack)
