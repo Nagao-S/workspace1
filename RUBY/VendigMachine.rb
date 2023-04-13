@@ -1,3 +1,5 @@
+require 'debug'
+
 class VendingMachine
   #初期化
   def initialize(manufacturer_name)
@@ -21,6 +23,7 @@ class VendingMachine
   end
   #ボタンが押されたときの挙動
   def press_button(item)
+    binding.break
     #選択されたアイテムがコーヒカップの場合
     if item.is_a?(CupCoffee) && @stock != 0 && @deposit >= item.price
       @deposit -= item.price
