@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # 各53枚で一組のデッキを作成する
 class Card
   attr_reader :deck

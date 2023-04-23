@@ -1,8 +1,9 @@
+# frozen_string_literal: true
+
 require_relative 'human'
 
 # Humanクラスを継承したPlayerクラス
 class Player < Human
-  attr_reader :over_card_in_hand_num, :cash, :desired_bet_cash, :surrender
   attr_accessor :over_card_in_hand_num, :cash, :desired_bet_cash, :surrender
 
   def initialize(name)
@@ -10,8 +11,6 @@ class Player < Human
     @cash = 100
     @over_card_in_hand_num = false
     @desired_bet_cash = 0
-
-    
   end
 
   # 現在のベットできる持ち点の表示
@@ -23,7 +22,7 @@ class Player < Human
   # ベットする点数
   def bet_cash
     @desired_bet_cash = 0
-    while @desired_bet_cash == 0
+    while @desired_bet_cash.zero?
       @desired_bet_cash = gets.chomp.to_i
       if @desired_bet_cash > @cash
         puts "現在#{@name}が賭けられる点数は#{@cash}点までです"
@@ -34,12 +33,11 @@ class Player < Human
       end
     end
   end
-  
+
   # カードを一枚引くメソッドを親クラスから呼び出し、引いたカードの詳細を表示する
   def draw_card(card)
     super(card)
     puts "#{@name}の引いたカードは#{@card_mark}の#{@card_num}です"
-
   end
 
   def action_turn_come(card)
@@ -50,15 +48,12 @@ class Player < Human
         puts "#{name}の現在の得点は#{card_in_hand_num}なのでこれ以上カードは引けません"
         break
       end
-      
 
       puts 'カードを引く(Y/N)'
-      if amount == 2
+      if @amount == 2
         puts 'ダブルダウン(W)'
         puts 'サレンダー(S)'
       end
-
-
 
       judge_draw = gets.chomp.upcase
 
@@ -67,7 +62,7 @@ class Player < Human
         break
       when 'Y'
         draw_card(card)
-      when 'W' , @amount == 2
+      when 'W'
         if @cash < @desired_bet_cash
           puts '持ち点が足りません'
         else
@@ -77,7 +72,7 @@ class Player < Human
           show_score
           break
         end
-      when 'S' , @amount == 2
+      when 'S'
         @cash += @desired_bet_cash / 2
         @surrender = true
         break

@@ -1,6 +1,9 @@
+# frozen_string_literal: true
+
+# Humanクラス
 class Human
   attr_accessor :amount, :card_in_hand_num, :name
-  attr_reader :amount, :card_mark, :card_num, :judge_draw, :ace, :ace_include
+  attr_reader :card_mark, :card_num, :judge_draw, :ace, :ace_include
 
   def initialize(name)
     @card_in_hand_num = 0
