@@ -53,10 +53,11 @@
    |カラム名|データ型|NULL|キー|初期値|AUTO INCREMENT|
    |:--|:--|:--|:--|:--|:--|
    |episode_id|INT|NO|PRIMARY|NULL|YES|
+   |program_id|INT|NO|FOREIGN|NULL|NO|
    |season_id|INT|NO|FOREIGN|NULL|NO|
    |episode_name|VARCHAR(255)|NO|NULL|NULL|NO|
    |episode_detail|TEXT|NO|NULL|NULL|NO|
-   ・外部キー制約：season_id
+   ・外部キー制約：program_id, season_id
 
 ## seasonsテーブル（各シーズンの詳細）
 
@@ -114,6 +115,14 @@
   );
    ```
 
+## genresテーブルの作成
+
+   ```sql
+CREATE TABLE genres (
+  genre_id INT AUTO_INCREMENT PRIMARY KEY,
+  genre_name VARCHAR(255) NOT NULL
+);
+  ```
 ## programsテーブルの作成
 
    ```sql
@@ -124,6 +133,15 @@
   genre_id INT NOT NULL,
   FOREIGN KEY (genre_id) REFERENCES genres(genre_id)
 );
+   ```
+## seasonsテーブルの作成
+
+   ```sql
+CREATE TABLE seasons (
+  season_id INT AUTO_INCREMENT PRIMARY KEY,
+  season_number INT NOT NULL
+);
+
    ```
 
 ## episodesテーブルの作成
@@ -139,15 +157,6 @@ CREATE TABLE episodes (
 
    ```
 
-## seasonsテーブルの作成
-
-   ```sql
-CREATE TABLE seasons (
-  season_id INT AUTO_INCREMENT PRIMARY KEY,
-  season_number INT NOT NULL
-);
-
-   ```
 
 ## channelsテーブルの作成
 
@@ -174,15 +183,8 @@ CREATE TABLE histories (
 
    ```
 
-## genresテーブルの作成
 
-   ```sql
-CREATE TABLE genres (
-  genre_id INT AUTO_INCREMENT PRIMARY KEY,
-  genre_name VARCHAR(255) NOT NULL
-);
 
-   ```
 
 ## time_zonesテーブルの作成
 
@@ -222,7 +224,7 @@ VALUES ('チャンネル1'), ('チャンネル2'), ('チャンネル3');
 
 -- programsテーブル
 ```sql
-INSERT INTO programs (program_name, program_detail, genre_id)
+INSERT INTO programs (program_title, program_detail, genre_id)
 VALUES ('ドラマA', 'ドラマAの説明', 1),
        ('アニメA', 'アニメAの説明', 2),
        ('バラエティA', 'バラエティAの説明', 3),
