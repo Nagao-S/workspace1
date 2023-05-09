@@ -2,14 +2,23 @@
 以下のデータを抽出するクエリを書いてください。 -->
 
 <!-- よく見られているエピソードを知りたいです。エピソード視聴数トップ3のエピソードタイトルと視聴数を取得してください -->
-SELECT episodes.episode_name, COUNT(*) AS view_count
+SELECT episode_name, COUNT(*) AS view_count
 FROM histories
-INNER JOIN episodes ON histories.program_id = episodes.episode_id
+JOIN episodes  ON histories.episode_id = episodes.episode_id
 GROUP BY episode_name
-ORDER BY view_count DESC;
+ORDER BY view_count DESC
 LIMIT 3;
 
 <!-- よく見られているエピソードの番組情報やシーズン情報も合わせて知りたいです。エピソード視聴数トップ3の番組タイトル、シーズン数、エピソード数、エピソードタイトル、視聴数を取得してください -->
+SELECT p.program_title,s.season_number,e.episode_number, e.episode_name, COUNT(*) AS view_count
+FROM histories h
+JOIN episodes  e ON h.episode_id = e.episode_id
+JOIN seasons s ON e.season_id = s.season_id
+JOIN programs p ON e.program_id = p.program_id
+GROUP BY p.program_title,s.season_number,e.episode_number, e.episode_name
+ORDER BY view_count DESC
+LIMIT 3;
+
 
 <!-- 本日の番組表を表示するために、本日、どのチャンネルの、何時から、何の番組が放送されるのかを知りたいです。本日放送される全ての番組に対して、チャンネル名、放送開始時刻(日付+時間)、放送終了時刻、シーズン数、エピソード数、エピソードタイトル、エピソード詳細を取得してください。なお、番組の開始時刻が本日のものを本日方法される番組とみなすものとします -->
 
