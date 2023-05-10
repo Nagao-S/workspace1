@@ -72,6 +72,7 @@ broadcastsテーブル（時間帯）
 |broadcast_id|INT|NO|PRIMARY|NULL|YES|
 |episode_id|INT|NO|FOREIGN|NULL|NO|
 |channel_id|INT|NO|FOREIGN|NULL|NO|
+|start_date|DATE|NO|NULL|NULL|NO|
 |start_time|TIME|NO|NULL|NULL|NO|
 |end_time|TIME|NO|NULL|NULL|NO|
 ・外部キー制約：episode_id, channel_id
@@ -86,3 +87,5 @@ historiesテーブル（視聴履歴）
 |channel_id|INT|NO|FOREIGN|NULL|NO|
 |view_date|DATE|NO|NULL|NULL|NO|
 ・外部キー制約：user_id, program_id, episode_id,channel_id
+
+
