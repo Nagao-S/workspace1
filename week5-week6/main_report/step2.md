@@ -101,6 +101,7 @@ historiesテーブル（視聴履歴）
 |history_id|INT|NO|PRIMARY|NULL|YES|
 |user_id|INT|NO|NULL|FOREIGN|NO|
 |program_id|INT|NO|FOREIGN|NULL|NO|
+|episode_id|INT|NO|FOREIGN|NULL|NO|
 |channel_id|INT|NO|FOREIGN|NULL|NO|
 |view_date|DATE|NO|NULL|NULL|NO|
 ・外部キー制約：user_id, program_id, channel_id
