@@ -27,6 +27,12 @@
      USE internet_tv;
    ```
 
+# ER図
+
+![](er.drawio.svg)
+
+
+
 # 各種テーブルの作成
 
 usersテーブル
