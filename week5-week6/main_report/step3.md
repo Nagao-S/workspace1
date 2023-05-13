@@ -63,7 +63,7 @@ LEFT JOIN episode_view_counts evc ON evc.program_id = p.program_id
 GROUP BY g.genre_id, p.program_id),
 genre_max_views AS (
 SELECT genre_name, MAX(average_views) AS max_views
-FROM genre_avg_programs 
+FROM genre_avg_programs
 GROUP BY genre_name)
 SELECT gap.genre_name,gap.program_title, gap.average_views
 FROM genre_avg_programs gap
