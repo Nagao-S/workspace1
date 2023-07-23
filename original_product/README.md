@@ -52,35 +52,80 @@
 
 <details>
 <summary><h3>テーブル定義</h3></summary>
-車両テーブル（Vehicles）
-
-| カラム名      | データ型       | NULL | キー | 初期値 | AUTO INCREMENT | 説明 |
-| ------------- | -----------|--|--|--|--|----------------------------- |
-| vehicle_id    | Integer    ||主キー||YES||
-| make          | String     ||||| 車両のメーカー名             |
-| model         | String     ||||| 車両のモデル名              |
-| year          | Integer    ||||| 車両の製造年                |
-| license_plate | String     ||||| ナンバープレート番号        |
-| lease_expiry  | Date       |YES|||| リースの満了日              |
-| inspection_due| Date       |YES|||| 次の車検日 |
-
 ユーザーテーブル（Users）
 
-| カラム名      | データ型       | NULL | キー | 初期値 | AUTO INCREMENT | 説明 |
-| ------------- | -----------|--|--|--|--|----------------------------- |
-| user_id      | Integer        ||主キー||YES||
-| name         | String         ||||| ユーザー名                  |
-| email        | String         ||||| メールアドレス              |
-| password     | String         ||||| パスワード（ハッシュ化済み） |
+| カラム名   | データ型     | NULL | キー | 初期値 | AUTO INCREMENT | 説明                              |
+| ---------- | ------------ | ---- | ---- | ------ | -------------- | --------------------------------- |
+| id         | INTEGER      | NO   | PK   |        | YES            | ユーザーを一意に特定するための ID |
+| username   | VARCHAR(255) | NO   |      |        |                | ユーザー名                        |
+| email      | VARCHAR(255) | NO   |      |        |                | メールアドレス                    |
+| password   | VARCHAR(255) | NO   |      |        |                | パスワード（ハッシュ化済み）      |
+| created_at | DATETIME     | NO   |      |        |                | レコード作成日時                  |
+| updated_at | DATETIME     | NO   |      |        |                | レコード更新日時                  |
 
-通知テーブル（Notifications）
+アイデアテーブル（Ideas）
 
-| カラム名      | データ型       | NULL | キー | 初期値 | AUTO INCREMENT | 説明 |
-| ------------- | -----------|--|--|--|--|----------------------------- |
-| notification_id | Integer        ||主キー||YES||
-| user_id         | Integer   ||外部キー|||通知を受け取るユーザーID   |
-| vehicle_id      | Integer    ||外部キー|||通知に関連する車両ID       |
-| date            | Date       |||||通知を送る日                |
+| カラム名    | データ型     | NULL | キー | 初期値 | AUTO INCREMENT | 説明                              |
+| ----------- | ------------ | ---- | ---- | ------ | -------------- | --------------------------------- |
+| id          | INTEGER      | NO   | PK   |        | YES            | アイデアを一意に特定するための ID |
+| user_id     | INTEGER      | NO   | FK   |        |                | アイデアを作成したユーザーの ID   |
+| title       | VARCHAR(255) | NO   |      |        |                | アイデアのタイトル                |
+| description | TEXT         | NO   |      |        |                | アイデアの詳細説明                |
+| created_at  | DATETIME     | NO   |      |        |                | レコード作成日時                  |
+| updated_at  | DATETIME     | NO   |      |        |                | レコード更新日時                  |
+
+フィードバックテーブル（Feedback）
+
+| カラム名   | データ型 | NULL | キー | 初期値 | AUTO INCREMENT | 説明                                    |
+| ---------- | -------- | ---- | ---- | ------ | -------------- | --------------------------------------- |
+| id         | INTEGER  | NO   | PK   |        | YES            | フィードバックを一意に特定するための ID |
+| user_id    | INTEGER  | NO   | FK   |        |                | フィードバックを提供したユーザーの ID   |
+| idea_id    | INTEGER  | NO   | FK   |        |                | フィードバック対象のアイデアの ID       |
+| content    | TEXT     | NO   |      |        |                | フィードバック内容                      |
+| created_at | DATETIME | NO   |      |        |                | レコード作成日時                        |
+| updated_at | DATETIME | NO   |      |        |                | レコード更新日時                        |
+
+協力者テーブル（Collaborator）
+
+| カラム名   | データ型     | NULL | キー | 初期値 | AUTO INCREMENT | 説明                               |
+| ---------- | ------------ | ---- | ---- | ------ | -------------- | ---------------------------------- |
+| id         | INTEGER      | NO   | PK   |        | YES            | 協力者を一意に特定するための ID    |
+| user_id    | INTEGER      | NO   | FK   |        |                | 協力者のユーザー ID                |
+| idea_id    | INTEGER      | NO   | FK   |        |                | 協力するアイデアの ID              |
+| status     | VARCHAR(255) | NO   |      |        |                | 協力状況（申し込み中、協力中など） |
+| created_at | DATETIME     | NO   |      |        |                | レコード作成日時                   |
+| updated_at | DATETIME     | NO   |      |        |                | レコード更新日時                   |
+
+いいねテーブル（Likes）
+
+| カラム名   | データ型 | NULL | キー | 初期値 | AUTO INCREMENT | 説明                            |
+| ---------- | -------- | ---- | ---- | ------ | -------------- | ------------------------------- |
+| id         | INTEGER  | NO   | PK   |        | YES            | いいねを一意に特定するための ID |
+| user_id    | INTEGER  | NO   | FK   |        |                | いいねをしたユーザーの ID       |
+| idea_id    | INTEGER  | NO   | FK   |        |                | いいねされたアイデアの ID       |
+| created_at | DATETIME | NO   |      |        |                | レコード作成日時                |
+| updated_at | DATETIME | NO   |      |        |                | レコード更新日時                |
+
+閲覧テーブル（Views）
+
+| カラム名   | データ型 | NULL | キー | 初期値 | AUTO INCREMENT | 説明                            |
+| ---------- | -------- | ---- | ---- | ------ | -------------- | ------------------------------- |
+| id         | INTEGER  | NO   | PK   |        | YES            | いいねを一意に特定するための ID |
+| idea_id    | INTEGER  | NO   | FK   |        |                | いいねされたアイデアの ID       |
+| created_at | DATETIME | NO   |      |        |                | レコード作成日時                |
+| updated_at | DATETIME | NO   |      |        |                | レコード更新日時                |
+
+メッセージテーブル（Messages）
+
+| カラム名    | データ型 | NULL | キー | 初期値 | AUTO INCREMENT | 説明                                |
+| ----------- | -------- | ---- | ---- | ------ | -------------- | ----------------------------------- |
+| id          | INTEGER  | NO   | PK   |        | YES            | メッセージを一意に特定するための ID |
+| sender_id   | INTEGER  | NO   | FK   |        |                | メッセージの送信者のユーザー ID     |
+| receiver_id | INTEGER  | NO   | FK   |        |                | メッセージの受信者のユーザー ID     |
+| content     | TEXT     | NO   |      |        |                | メッセージ内容                      |
+| created_at  | DATETIME | NO   |      |        |                | レコード作成日時                    |
+| updated_at  | DATETIME | NO   |      |        |                | レコード更新日時                    |
+
 
 <img src="img/original_er.jpg" width="900">
 
