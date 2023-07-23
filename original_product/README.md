@@ -32,7 +32,7 @@
 
 <details>
 <summary><h3>業務フロー</h3></summary>
-<img src="img/%E6%A5%AD%E5%8B%99%E3%83%95%E3%83%AD%E3%83%BC.png" width="900">
+<img src="img/業務フロー.jpg" width="900">
 </details>
 
 
