@@ -130,9 +130,3 @@
 <img src="img/original_er.jpg" width="900">
 
 </details>
-
-
-<details>
-<summary> <h3>システム構成図</h3> </summary>
-<img src="img/VehicleMinders.png" width="900">
-</details>
