@@ -81,6 +81,9 @@
 | user_id         | Integer   ||外部キー|||通知を受け取るユーザーID   |
 | vehicle_id      | Integer    ||外部キー|||通知に関連する車両ID       |
 | date            | Date       |||||通知を送る日                |
+
+<img src="img/original_er.jpg" width="900">
+
 </details>
 
 
