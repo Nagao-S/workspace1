@@ -123,6 +123,7 @@
 | ---------- | -------- | ---- | ---- | ------ | -------------- | ------------------------------- |
 | id         | INTEGER  | NO   | PK   |        | YES            | いいねを一意に特定するための ID |
 | idea_id    | INTEGER  | NO   | FK   |        |                | いいねされたアイデアの ID       |
+| view_count | INTEGER  | NO   |      |        |                | 閲覧数                         |
 | created_at | DATETIME | NO   |      |        |                | レコード作成日時                |
 | updated_at | DATETIME | NO   |      |        |                | レコード更新日時                |
 
