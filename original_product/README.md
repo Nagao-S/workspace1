@@ -139,6 +139,6 @@
 | updated_at  | DATETIME | NO   |      |        |                | レコード更新日時                    |
 
 
-<img src="img/original_er.jpg" width="900">
+<img src="img/original_er2.jpg" width="900">
 
 </details>
